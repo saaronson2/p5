@@ -1,3 +1,11 @@
+//Title: P5 Java FX
+//Due Date: 4/12/19
+// DuplicateKeyException, IllegalNullKeyException
+//Course: CS400 Lecture 01, Spring 2019
+//Author: Sam Aronson
+//Email: saaronson2@wisc.edu
+//Lecturer's Name: Deb Deppeler
+//Sources: none
 package application;
 
 import javafx.application.Application;
