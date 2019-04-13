@@ -19,38 +19,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = new BorderPane();
-
-			Label myLabel = new Label("CS400 MyFirstJavaFX");
-			root.setTop(myLabel);
-
+			root.setTop(makeLabel("CS400 MyFirstJavaFX"));
 			// Build Combo box
 			// https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
-			ObservableList<String> options = FXCollections.observableArrayList("Daniel", "Sam", "Nate", "Josh");
-			final ComboBox comboBox = new ComboBox(options);
-			root.setLeft(comboBox);
-
+			root.setLeft(makeComboBox());
 			// Build ImageView
 			// https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html
-			Image image = new Image("face.jpg");// load the image
-			ImageView iv1 = new ImageView(); // simple displays ImageView the image as is
-			iv1.setImage(image);
-			iv1.setRotate(90);
-			iv1.setFitWidth(100);
-			iv1.setPreserveRatio(true);
-			iv1.setSmooth(true);
-			iv1.setCache(true);
-			root.setCenter(iv1);
-
-			
-			Button myButton = new Button("Done");
-			root.setBottom(myButton);
-			
-			TextField myTextField = new TextField("Enter Name Here: ");
-			root.setRight(myTextField);
-			
-			CheckBox myCheckBox = new CheckBox("Sam Aronson?");
-			root.setRight(myCheckBox);
-			
+			root.setCenter(putImage("face.jpg"));
+			root.setBottom(makeButton("Done"));
+			root.setRight(makeCheckBox("Sam Aronson?"));
 			Scene scene = new Scene(root, 400, 400); // width then height
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -59,6 +36,69 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Build Combo box https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
+	 * 
+	 * @return
+	 */
+	private ComboBox makeComboBox() {
+		ObservableList<String> options = FXCollections.observableArrayList("Daniel", "Sam", "Nate", "Josh");
+		final ComboBox comboBox = new ComboBox(options);
+		return comboBox;
+	}
+
+	/**
+	 * Makes a label
+	 * 
+	 * @param title
+	 * @return
+	 */
+	private Label makeLabel(String title) {
+		Label myLabel = new Label(title);
+		return myLabel;
+	}
+	
+	/**
+	 * Makes a checkbox
+	 * 
+	 * @param title
+	 * @return
+	 */
+	private CheckBox makeCheckBox(String title) {
+		CheckBox myCheckBox = new CheckBox(title);
+		return myCheckBox;
+	}
+
+	/**
+	 * Makes a button
+	 * 
+	 * @param title
+	 * @return
+	 */
+	private Button makeButton(String title) {
+		Button myButton = new Button(title);
+		return myButton;
+	}
+
+	/**
+	 * Builds an image given the image title Build ImageView
+	 * https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html
+	 * 
+	 * @param image
+	 * @return
+	 */
+	private ImageView putImage(String image) {
+		Image i = new Image(image);// load the image
+		ImageView iv1 = new ImageView(); // simple displays ImageView the image as is
+		iv1.setImage(i);
+		iv1.setRotate(90);
+		iv1.setFitWidth(100);
+		iv1.setPreserveRatio(true);
+		iv1.setSmooth(true);
+		iv1.setCache(true);
+		return iv1;
 	}
 
 	public static void main(String[] args) {
